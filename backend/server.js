@@ -16,44 +16,35 @@ const errorHandler = require("./middleware/errorHandler");
 const app = express();
 
 /* ======================================================
-   CORS CONFIG (IMPORTANT FOR RENDER + FRONTEND)
+   🔥 FIXED CORS CONFIG FOR RENDER FRONTEND
 ====================================================== */
 
-const allowedOrigins = ("https://loanlens-0rit.onrender.com" || "")
-  .split(",")
-  .map(s => s.trim())
-  .filter(Boolean);
+app.use(
+  cors({
+    origin: [
+      "https://loanlens-0rit.onrender.com",  // Your Render frontend
+      "http://localhost:3000"                // Local dev
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+  })
+);
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    // Requests without origin (curl, server-to-server)
-    if (!origin) return callback(null, true);
+/* ======================================================
+   NORMAL MIDDLEWARES
+====================================================== */
 
-    // Wildcard support
-    if (allowedOrigins.includes("*")) return callback(null, true);
-
-    // Allow if origin in allowed list
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-
-    return callback(new Error("Not allowed by CORS: " + origin), false);
-  },
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "Accept"],
-  credentials: false // using JWT, not cookies
-};
-
-app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan("dev"));
 
 /* ======================================================
-   PUBLIC ROUTES (NO AUTH REQUIRED)
+   PUBLIC ROUTES
 ====================================================== */
 
 app.use("/api/auth", authRoutes);
 
 /* ======================================================
-   PROTECTED ROUTES (JWT REQUIRED)
+   PROTECTED ROUTES
 ====================================================== */
 
 app.use("/api/members", authMiddleware, membersRoutes);
@@ -78,16 +69,23 @@ app.use(errorHandler);
 ====================================================== */
 
 const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/loanlens";
+const MONGO_URI = process.env.MONGO_URI;
+
+if (!MONGO_URI) {
+  console.error("❌ ERROR: Missing MONGO_URI in environment variables!");
+  process.exit(1);
+}
 
 mongoose
   .connect(MONGO_URI)
   .then(async () => {
     console.log("✅ MongoDB connected");
+
     console.log("📌 Using DB:", mongoose.connection.db.databaseName);
 
-    // Debugging: list collections (safe to keep)
-    const collections = await mongoose.connection.db.listCollections().toArray();
+    const collections = await mongoose.connection.db
+      .listCollections()
+      .toArray();
     console.log(
       "📁 Collections:",
       collections.map((c) => c.name)
