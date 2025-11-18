@@ -1,99 +1,316 @@
-/* ----------------------------------------------------- Premium Finance-Themed UI — LoanLens (Final Version) Professional Typography • Smooth Animations • Dynamic UI ----------------------------------------------------- */
+/* -----------------------------------------------------
+ Premium Finance-Themed UI — LoanLens (Final Version)
+ Professional Typography • Smooth Animations • Dynamic UI
+----------------------------------------------------- */
 
-/* ----------------------------------------------------- Root Variables (Theme 1: Modern & Trustworthy) ----------------------------------------------------- */ :root { --primary: #007AFF; --primary-dark: #005bb5; --secondary: #eaf3ff; --danger: #e74c3c; --success: #2ecc71;
+/* -----------------------------------------------------
+ Root Variables (Theme 1: Modern & Trustworthy)
+----------------------------------------------------- */
+:root {
+  --primary: #007AFF;
+  --primary-dark: #005bb5;
+  --secondary: #eaf3ff;
+  --danger: #e74c3c;
+  --success: #2ecc71;
 
---text-dark: #1f2933; --text-light: #fafafa; --text-muted: #6b7280;
+  --text-dark: #1f2933;
+  --text-light: #fafafa;
+  --text-muted: #6b7280;
 
---bg-body: #c4e0fc; --bg-surface: #ffffff;
+  --bg-body: #c4e0fc;      
+  --bg-surface: #ffffff;
 
---border-color: #d1d5db; --shadow: 0px 4px 16px rgba(0,0,0,0.08);
+  --border-color: #d1d5db;
+  --shadow: 0px 4px 16px rgba(0,0,0,0.08);
 
---nav-height: 65px; --radius: 10px; }
+  --nav-height: 65px;
 
-/* ----------------------------------------------------- Global Styles ----------------------------------------------------- */ *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  --radius: 10px;
+}
 
-body { font-family: "Inter", "Manrope", sans-serif; background: var(--bg-body); color: var(--text-dark); padding-top: var(--nav-height); /* Ensures content never overlaps navbar */ line-height: 1.6; animation: fadeIn 0.6s ease-out; }
+/* -----------------------------------------------------
+ Global Styles
+----------------------------------------------------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+body {
+  font-family: "Inter", "Manrope", sans-serif;
+  background: var(--bg-body);
+  color: var(--text-dark);
+  padding-top: var(--nav-height);
+  line-height: 1.6;
 
-h1, h2, h3, h4, h5, h6 { margin-bottom: 1rem; font-weight: 700; font-family: "Manrope", sans-serif; }
+  /* Smooth Fade on Page Load */
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-family: "Manrope", sans-serif;
+}
 
 p { margin-bottom: 1rem; }
 
-a { color: var(--primary); text-decoration: none; } a:hover { color: var(--primary-dark); }
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover { color: var(--primary-dark); }
 
 ul { list-style-type: none; }
 
-/* ----------------------------------------------------- Main Container ----------------------------------------------------- / .container { max-width: 1000px; margin: calc(var(--nav-height) + 20px) auto; / EXTRA spacing from navbar */ padding: 24px 20px; }
+/* -----------------------------------------------------
+ Main Container
+----------------------------------------------------- */
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 24px 20px;
+}
 
-/* ----------------------------------------------------- Navbar ----------------------------------------------------- */ .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+/* -----------------------------------------------------
+ Navbar
+----------------------------------------------------- */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
 
-display: flex; justify-content: space-between; align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-padding: 0 30px; min-height: var(--nav-height);
+  padding: 0 30px;
+  min-height: var(--nav-height);
 
-background: var(--bg-surface); border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
 
-.logo { font-size: 1.7rem; font-weight: 800; color: var(--primary); }
+.logo {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--primary);
+}
 
-.nav-links { display: flex; gap: 24px; }
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
 
-.nav-links a { padding-bottom: 6px; font-weight: 500; color: var(--text-muted); border-bottom: 2px solid transparent; }
+.nav-links a {
+  padding-bottom: 6px;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+}
 
-.nav-links a.active { color: var(--primary); border-bottom-color: var(--primary); }
+.nav-links a.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
 
-.logout-btn { background: var(--danger); }
+.logout-btn {
+  background: var(--danger);
+}
 
-/* ----------------------------------------------------- Buttons ----------------------------------------------------- */ button { padding: 12px 20px; border-radius: var(--radius); background: var(--primary); color: var(--text-light); border: none; cursor: pointer; font-size: 15px; font-weight: 600; transition: 0.2s ease; margin-top: 6px; }
+/* -----------------------------------------------------
+ Buttons
+----------------------------------------------------- */
+button {
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  background: var(--primary);
+  color: var(--text-light);
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.2s ease;
+  margin-top: 6px;     /* Extra spacing between form buttons */
+}
 
-button:hover { background: var(--primary-dark); } button:disabled { opacity: 0.6; cursor: not-allowed; }
+button:hover { background: var(--primary-dark); }
 
-/* ----------------------------------------------------- Cards (Floating UI) ----------------------------------------------------- */ .card { background: var(--bg-surface); padding: 30px; border-radius: var(--radius); border: 1px solid var(--border-color); box-shadow: var(--shadow); margin-bottom: 30px; animation: floatIn 0.7s ease-out; }
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
-@keyframes floatIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+/* -----------------------------------------------------
+ Cards (Floating UI)
+----------------------------------------------------- */
+.card {
+  background: var(--bg-surface);
+  padding: 30px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
 
-.list { border: 1px solid var(--border-color); border-radius: var(--radius); overflow: hidden; }
+  /* Floating animation on load */
+  animation: floatIn 0.7s ease-out;
+}
 
-.member-item, .list li { background: var(--bg-surface); padding: 20px; font-size: 15px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; transition: background 0.15s ease; }
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-.list li:hover { background: #f8fbff; } .list li:last-child { border-bottom: none; }
+.list {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
 
-/* ----------------------------------------------------- Dynamic "Pending Loans" Highlight ----------------------------------------------------- */ .blink-warning { animation: pulseWarning 1.6s infinite; }
+.member-item,
+.list li {
+  background: var(--bg-surface);
+  padding: 20px;
+  font-size: 15px;
 
-@keyframes pulseWarning { 0%   { background-color: #fff5f5; } 50%  { background-color: #ffe0e0; } 100% { background-color: #fff5f5; } }
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-/* ----------------------------------------------------- Forms ----------------------------------------------------- */ .form { display: flex; flex-direction: column; gap: 20px; }
+  transition: background 0.15s ease;
+}
 
-.form-inline { display: flex; flex-wrap: wrap; gap: 18px; }
+.list li:hover {
+  background: #f8fbff;
+}
 
-.form label { margin-bottom: 4px; font-weight: 600; }
+.list li:last-child {
+  border-bottom: none;
+}
 
-input, select, textarea { width: 100%; padding: 12px; border-radius: var(--radius); border: 1px solid var(--border-color); background: var(--bg-surface); font-size: 15px; transition: 0.2s ease; }
+/* -----------------------------------------------------
+ Dynamic "Pending Loans" Highlight (Blink Effect)
+----------------------------------------------------- */
+.blink-warning {
+  animation: pulseWarning 1.6s infinite;
+}
 
-input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px #dce9ff; }
+@keyframes pulseWarning {
+  0%   { background-color: #fff5f5; }
+  50%  { background-color: #ffe0e0; }
+  100% { background-color: #fff5f5; }
+}
 
-/* ----------------------------------------------------- Auth Pages ----------------------------------------------------- */ .auth-page-wrapper { display: flex; justify-content: center; align-items: center; min-height: calc(100vh - var(--nav-height)); padding: 20px; }
+/* -----------------------------------------------------
+ Forms
+----------------------------------------------------- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;   /* More spacing between inputs */
+}
 
-.auth-page-wrapper .card { max-width: 420px; }
+.form-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
 
-.error { color: var(--danger); font-weight: 600; } .success { color: var(--success); font-weight: 600; }
+.form label {
+  margin-bottom: 4px;
+  font-weight: 600;
+}
 
-/* ----------------------------------------------------- Dashboard Summary Cards ----------------------------------------------------- */ .summary-grid { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 32px; }
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  font-size: 15px;
+  transition: 0.2s ease;
+}
 
-.summary-grid .card { text-align: center; padding: 26px; }
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px #dce9ff;
+}
 
-.summary-grid .card h3 { color: var(--text-muted); margin-bottom: 6px; font-size: 1.1rem; }
+/* -----------------------------------------------------
+ Auth Pages (Centered Login/Register)
+----------------------------------------------------- */
+.auth-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - var(--nav-height));
+  padding: 20px;
+}
 
-.summary-grid .card p { font-size: 2.3rem; font-weight: 700; color: var(--primary); }
+.auth-page-wrapper .card {
+  max-width: 420px;
+}
 
-/* ----------------------------------------------------- Responsive Fix — Prevent Overlap Completely ----------------------------------------------------- / @media (max-width: 600px) { body { padding-top: calc(var(--nav-height) + 20px); / EXTRA space for small screens */ }
+.error { color: var(--danger); font-weight: 600; }
+.success { color: var(--success); font-weight: 600; }
 
-.container { padding: 16px 12px; margin-top: calc(var(--nav-height) + 20px); }
+/* -----------------------------------------------------
+ Dashboard Summary Cards
+----------------------------------------------------- */
+.summary-grid {
+  display: grid;
+  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-bottom: 32px;
+}
 
-.navbar { flex-wrap: wrap; justify-content: center; padding: 10px 16px; min-height: 70px; }
+.summary-grid .card {
+  text-align: center;
+  padding: 26px;
+}
 
-.nav-links { justify-content: center; margin-top: 5px; }
+.summary-grid .card h3 {
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-size: 1.1rem;
+}
 
-.logout-btn { width: 100%; margin-top: 10px; padding: 10px; font-size: 14px; }
+.summary-grid .card p {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--primary);
+}
 
-.form-inline { flex-direction: column; } .form-inline button { width: 100%; } }
+/* -----------------------------------------------------
+ Responsive
+----------------------------------------------------- */
+@media (max-width: 600px) {
+  .container { padding: 16px 12px; margin-top: 20px; }
+
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 16px;
+  }
+
+  .nav-links { justify-content: center; }
+
+  .logout-btn { width: 100%; margin-top: 10px; }
+
+  .form-inline { flex-direction: column; }
+  .form-inline button { width: 100%; }
+}
