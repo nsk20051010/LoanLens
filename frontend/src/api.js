@@ -1,4 +1,4 @@
-const BASE = "http://localhost:5000/api";
+const BASE = process.env.REACT_APP_API_BASE;
 
 // ------------------------------
 // Inject JWT Automatically
@@ -95,3 +95,4 @@ export const authAPI = {
       return json;
     }),
 };
+
