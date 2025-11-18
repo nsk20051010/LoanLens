@@ -17,13 +17,14 @@
   --text-light: #fafafa;
   --text-muted: #6b7280;
 
-  --bg-body: #c4e0fc;      
+  --bg-body: #c4e0fc;
   --bg-surface: #ffffff;
 
   --border-color: #d1d5db;
   --shadow: 0px 4px 16px rgba(0,0,0,0.08);
 
-  --nav-height: 65px;
+  --nav-height: 65px;  /* Desktop navbar height */
+  --nav-height-mobile: 50px; /* Smaller mobile navbar */
 
   --radius: 10px;
 }
@@ -41,10 +42,13 @@ body {
   font-family: "Inter", "Manrope", sans-serif;
   background: var(--bg-body);
   color: var(--text-dark);
+
+  /* Prevent overlap with navbar */
   padding-top: var(--nav-height);
+  
   line-height: 1.6;
 
-  /* Smooth Fade on Page Load */
+  /* Smooth Fade */
   animation: fadeIn 0.6s ease-out;
 }
 
@@ -60,24 +64,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p { margin-bottom: 1rem; }
-
-a {
-  color: var(--primary);
-  text-decoration: none;
-}
-
-a:hover { color: var(--primary-dark); }
-
-ul { list-style-type: none; }
-
-/* -----------------------------------------------------
- Main Container
------------------------------------------------------ */
-.container {
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 24px 20px;
-}
 
 /* -----------------------------------------------------
  Navbar
@@ -124,6 +110,18 @@ ul { list-style-type: none; }
 
 .logout-btn {
   background: var(--danger);
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  font-size: 14px;
+}
+
+/* -----------------------------------------------------
+ Main Container
+----------------------------------------------------- */
+.container {
+  max-width: 1000px;
+  margin: 35px auto;
+  padding: 24px 20px;
 }
 
 /* -----------------------------------------------------
@@ -139,18 +137,13 @@ button {
   font-size: 15px;
   font-weight: 600;
   transition: 0.2s ease;
-  margin-top: 6px;     /* Extra spacing between form buttons */
+  margin-top: 8px;  
 }
 
 button:hover { background: var(--primary-dark); }
 
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
 /* -----------------------------------------------------
- Cards (Floating UI)
+ Cards
 ----------------------------------------------------- */
 .card {
   background: var(--bg-surface);
@@ -158,9 +151,8 @@ button:disabled {
   border-radius: var(--radius);
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow);
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 
-  /* Floating animation on load */
   animation: floatIn 0.7s ease-out;
 }
 
@@ -180,8 +172,8 @@ button:disabled {
   background: var(--bg-surface);
   padding: 20px;
   font-size: 15px;
-
   border-bottom: 1px solid var(--border-color);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -193,12 +185,8 @@ button:disabled {
   background: #f8fbff;
 }
 
-.list li:last-child {
-  border-bottom: none;
-}
-
 /* -----------------------------------------------------
- Dynamic "Pending Loans" Highlight (Blink Effect)
+ Blinking Highlight for Pending Loans
 ----------------------------------------------------- */
 .blink-warning {
   animation: pulseWarning 1.6s infinite;
@@ -216,18 +204,13 @@ button:disabled {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 20px;   /* More spacing between inputs */
+  gap: 20px;
 }
 
 .form-inline {
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
-}
-
-.form label {
-  margin-bottom: 4px;
-  font-weight: 600;
 }
 
 input,
@@ -251,7 +234,7 @@ textarea:focus {
 }
 
 /* -----------------------------------------------------
- Auth Pages (Centered Login/Register)
+ Auth Pages
 ----------------------------------------------------- */
 .auth-page-wrapper {
   display: flex;
@@ -259,6 +242,7 @@ textarea:focus {
   align-items: center;
   min-height: calc(100vh - var(--nav-height));
   padding: 20px;
+  margin-top: 20px;
 }
 
 .auth-page-wrapper .card {
@@ -269,7 +253,7 @@ textarea:focus {
 .success { color: var(--success); font-weight: 600; }
 
 /* -----------------------------------------------------
- Dashboard Summary Cards
+ Dashboard Summary
 ----------------------------------------------------- */
 .summary-grid {
   display: grid;
@@ -278,39 +262,53 @@ textarea:focus {
   margin-bottom: 32px;
 }
 
-.summary-grid .card {
-  text-align: center;
-  padding: 26px;
-}
-
-.summary-grid .card h3 {
-  color: var(--text-muted);
-  margin-bottom: 6px;
-  font-size: 1.1rem;
-}
-
-.summary-grid .card p {
-  font-size: 2.3rem;
-  font-weight: 700;
-  color: var(--primary);
-}
-
 /* -----------------------------------------------------
- Responsive
+ Responsive (Mobile Fix)
 ----------------------------------------------------- */
 @media (max-width: 600px) {
-  .container { padding: 16px 12px; margin-top: 20px; }
 
-  .navbar {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 10px 16px;
+  body {
+    padding-top: var(--nav-height-mobile); /* ↓ MOBILE FIX */
   }
 
-  .nav-links { justify-content: center; }
+  .navbar {
+    min-height: var(--nav-height-mobile);
+    padding: 6px 16px;
 
-  .logout-btn { width: 100%; margin-top: 10px; }
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
 
-  .form-inline { flex-direction: column; }
-  .form-inline button { width: 100%; }
+  .logo {
+    font-size: 1.4rem;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  .logout-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    width: auto;
+    margin-top: 4px;
+  }
+
+  .container {
+    padding: 16px 14px;
+    margin-top: 25px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .form-inline {
+    flex-direction: column;
+  }
+
+  .form-inline button {
+    width: 100%;
+  }
 }
