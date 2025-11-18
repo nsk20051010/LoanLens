@@ -1,24 +1,35 @@
 /* -----------------------------------------------------
-Root Variables (Theme 1: Modern & Trustworthy)
+ Premium Finance-Themed UI — LoanLens (Final Version)
+ Professional Typography • Smooth Animations • Dynamic UI
+----------------------------------------------------- */
+
+/* -----------------------------------------------------
+ Root Variables (Theme 1: Modern & Trustworthy)
 ----------------------------------------------------- */
 :root {
   --primary: #007AFF;
   --primary-dark: #005bb5;
-  --secondary: #f0f7ff;
-  --danger: #dc3545;
-  --success: #28a745;
-  --text-dark: #212529;
-  --text-light: #f8f9fa;
-  --text-muted: #6c757d;
-  --bg-body: #c4e0fc;       /* Page background */
-  --bg-surface: #FFFFFF;    /* Card, inputs, UI elements */
-  --border-color: #dee2e6;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  --nav-height: 60px;
+  --secondary: #eaf3ff;
+  --danger: #e74c3c;
+  --success: #2ecc71;
+
+  --text-dark: #1f2933;
+  --text-light: #fafafa;
+  --text-muted: #6b7280;
+
+  --bg-body: #c4e0fc;      
+  --bg-surface: #ffffff;
+
+  --border-color: #d1d5db;
+  --shadow: 0px 4px 16px rgba(0,0,0,0.08);
+
+  --nav-height: 65px;
+
+  --radius: 10px;
 }
 
 /* -----------------------------------------------------
-Global Styles
+ Global Styles
 ----------------------------------------------------- */
 *, *::before, *::after {
   margin: 0;
@@ -27,16 +38,25 @@ Global Styles
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: var(--bg-body);    /* ONLY page background */
+  font-family: "Inter", "Manrope", sans-serif;
+  background: var(--bg-body);
   color: var(--text-dark);
   padding-top: var(--nav-height);
-  line-height: 1.5;
+  line-height: 1.6;
+
+  /* Smooth Fade on Page Load */
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin-bottom: 0.75rem;
-  font-weight: 600;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-family: "Manrope", sans-serif;
 }
 
 p { margin-bottom: 1rem; }
@@ -44,7 +64,6 @@ p { margin-bottom: 1rem; }
 a {
   color: var(--primary);
   text-decoration: none;
-  transition: 0.2s ease;
 }
 
 a:hover { color: var(--primary-dark); }
@@ -52,16 +71,16 @@ a:hover { color: var(--primary-dark); }
 ul { list-style-type: none; }
 
 /* -----------------------------------------------------
-Main Container
+ Main Container
 ----------------------------------------------------- */
 .container {
-  max-width: 960px;
-  margin: 0 auto;
+  max-width: 1000px;
+  margin: 40px auto;
   padding: 24px 20px;
 }
 
 /* -----------------------------------------------------
-Navbar
+ Navbar
 ----------------------------------------------------- */
 .navbar {
   position: fixed;
@@ -71,31 +90,28 @@ Navbar
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
 
-  padding: 0 20px;
+  padding: 0 30px;
   min-height: var(--nav-height);
 
-  background: var(--bg-surface); /* White navbar */
-  color: var(--text-dark);
-
+  background: var(--bg-surface);
   border-bottom: 1px solid var(--border-color);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .logo {
-  font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
+  font-weight: 800;
   color: var(--primary);
 }
 
 .nav-links {
   display: flex;
-  gap: 16px;
+  gap: 24px;
 }
 
 .nav-links a {
-  padding: 8px 4px;
+  padding-bottom: 6px;
   font-weight: 500;
   color: var(--text-muted);
   border-bottom: 2px solid transparent;
@@ -111,97 +127,118 @@ Navbar
 }
 
 /* -----------------------------------------------------
-Buttons
+ Buttons
 ----------------------------------------------------- */
 button {
-  padding: 10px 16px;
-  border-radius: 6px;
+  padding: 12px 20px;
+  border-radius: var(--radius);
   background: var(--primary);
   color: var(--text-light);
   border: none;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
   transition: 0.2s ease;
+  margin-top: 6px;     /* Extra spacing between form buttons */
 }
 
 button:hover { background: var(--primary-dark); }
+
 button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
 /* -----------------------------------------------------
-Cards & Lists
+ Cards (Floating UI)
 ----------------------------------------------------- */
 .card {
-  background: var(--bg-surface); /* WHITE */
-  padding: 24px;
-  border-radius: 8px;
+  background: var(--bg-surface);
+  padding: 30px;
+  border-radius: var(--radius);
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow);
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+
+  /* Floating animation on load */
+  animation: floatIn 0.7s ease-out;
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .list {
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: var(--radius);
   overflow: hidden;
-  padding: 0;
 }
 
 .member-item,
 .list li {
-  background: var(--bg-surface); /* WHITE rows */
-  padding: 16px;
+  background: var(--bg-surface);
+  padding: 20px;
+  font-size: 15px;
+
   border-bottom: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  transition: background 0.15s ease;
 }
 
-.member-item:last-child,
+.list li:hover {
+  background: #f8fbff;
+}
+
 .list li:last-child {
   border-bottom: none;
 }
 
-.muted {
-  color: var(--text-muted);
+/* -----------------------------------------------------
+ Dynamic "Pending Loans" Highlight (Blink Effect)
+----------------------------------------------------- */
+.blink-warning {
+  animation: pulseWarning 1.6s infinite;
+}
+
+@keyframes pulseWarning {
+  0%   { background-color: #fff5f5; }
+  50%  { background-color: #ffe0e0; }
+  100% { background-color: #fff5f5; }
 }
 
 /* -----------------------------------------------------
-Forms
+ Forms
 ----------------------------------------------------- */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;   /* More spacing between inputs */
 }
 
 .form-inline {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 18px;
 }
 
 .form label {
-  font-weight: 500;
   margin-bottom: 4px;
+  font-weight: 600;
 }
 
-/* INPUTS — UPDATED AS REQUESTED (WHITE BACKGROUND) */
 input,
 select,
 textarea {
   width: 100%;
-  padding: 10px;
-  border-radius: 6px;
+  padding: 12px;
+  border-radius: var(--radius);
   border: 1px solid var(--border-color);
-
-  background: var(--bg-surface);   /* WHITE INPUT FIELDS */
-  color: var(--text-dark);
-
-  font-size: 14px;
+  background: var(--bg-surface);
+  font-size: 15px;
   transition: 0.2s ease;
 }
 
@@ -210,11 +247,11 @@ select:focus,
 textarea:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--secondary);
+  box-shadow: 0 0 0 3px #dce9ff;
 }
 
 /* -----------------------------------------------------
-Auth Pages
+ Auth Pages (Centered Login/Register)
 ----------------------------------------------------- */
 .auth-page-wrapper {
   display: flex;
@@ -225,52 +262,54 @@ Auth Pages
 }
 
 .auth-page-wrapper .card {
-  max-width: 400px;
+  max-width: 420px;
 }
 
-.error { color: var(--danger); font-weight: 500; }
-.success { color: var(--success); font-weight: 500; }
+.error { color: var(--danger); font-weight: 600; }
+.success { color: var(--success); font-weight: 600; }
 
 /* -----------------------------------------------------
-Dashboard
+ Dashboard Summary Cards
 ----------------------------------------------------- */
 .summary-grid {
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  margin-bottom: 24px;
+  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-bottom: 32px;
 }
 
 .summary-grid .card {
   text-align: center;
-  margin-bottom: 0;
+  padding: 26px;
 }
 
 .summary-grid .card h3 {
   color: var(--text-muted);
+  margin-bottom: 6px;
+  font-size: 1.1rem;
 }
 
 .summary-grid .card p {
-  font-size: 2rem;
+  font-size: 2.3rem;
+  font-weight: 700;
   color: var(--primary);
 }
 
 /* -----------------------------------------------------
-Responsive (Mobile)
+ Responsive
 ----------------------------------------------------- */
 @media (max-width: 600px) {
-  .container { padding: 16px 12px; }
+  .container { padding: 16px 12px; margin-top: 20px; }
 
   .navbar {
-    gap: 12px;
+    flex-wrap: wrap;
     justify-content: center;
+    padding: 10px 16px;
   }
-
-  .logo { width: 100%; text-align: center; }
 
   .nav-links { justify-content: center; }
 
-  .logout-btn { width: 100%; }
+  .logout-btn { width: 100%; margin-top: 10px; }
 
   .form-inline { flex-direction: column; }
   .form-inline button { width: 100%; }
