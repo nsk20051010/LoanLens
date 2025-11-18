@@ -11,22 +11,46 @@ export default function About() {
         lending, repayments, and outstanding balances among members.
       </p>
 
-      <h3>📘 How to Use the App</h3>
-      <ul>
-        <li><strong>Register/Login:</strong> Create an account to access the dashboard.</li>
-        <li><strong>Add Members:</strong> Maintain a list of people involved in loan transactions.</li>
-        <li><strong>Create Loans:</strong> Record who borrowed, who lent, principal amount, interest, due date, etc.</li>
-        <li><strong>Track Repayments:</strong> Add repayments and the system auto-calculates outstanding balances.</li>
-        <li><strong>Dashboard:</strong> View pending/cleared loans and group financial summary.</li>
-      </ul>
+      <h3 style={{
+  marginTop: "40px",
+  fontSize: "1.8rem",
+  fontWeight: "700",
+  letterSpacing: "0.5px"
+}}>
+  📘 How to Use the App
+</h3>
 
-      <h3>🎯 Purpose of the App</h3>
-      <p>
-        LoanLens demonstrates a functional full-stack web application with real
-        data persistence, secure authentication, meaningful UI features, and
-        clean coding practices following the university’s MERN project
-        requirements.
-      </p>
+<ul style={{
+  marginTop: "30px",
+  lineHeight: "2.1rem",
+  fontSize: "1.15rem",
+  paddingLeft: "25px",
+  maxWidth: "900px"
+}}>
+  <li style={{ marginBottom: "18px" }}>
+    <strong>Register/Login:</strong> Create an account to access the dashboard.
+  </li>
+
+  <li style={{ marginBottom: "18px" }}>
+    <strong>Add Members:</strong> Maintain a list of people involved in loan transactions.
+  </li>
+
+  <li style={{ marginBottom: "18px" }}>
+    <strong>Create Loans:</strong> Record who borrowed, who lent, principal amount, interest, due date, and notes.
+  </li>
+
+  <li style={{ marginBottom: "18px" }}>
+    <strong>Track Repayments:</strong> Add repayments easily and LoanLens automatically updates outstanding balances.
+  </li>
+
+  <li style={{ marginBottom: "18px" }}>
+    <strong>Dashboard:</strong> View pending vs cleared loans, total outstanding, and group-level financial summary.
+  </li>
+</ul>
+
+
+      
     </section>
   );
 }
+
