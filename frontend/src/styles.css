@@ -1,108 +1,104 @@
 /* -----------------------------------------------------
-   Root Variables (Theme: Modern Soft Blue)
+Root Variables (Theme 1: Modern & Trustworthy)
 ----------------------------------------------------- */
 :root {
   --primary: #007AFF;
   --primary-dark: #005bb5;
-  --secondary: #e8f1ff;
+  --secondary: #f0f7ff;
   --danger: #dc3545;
   --success: #28a745;
-
   --text-dark: #212529;
-  --text-light: #ffffff;
+  --text-light: #f8f9fa;
   --text-muted: #6c757d;
-
-  --bg-body: #c4e0fc;        /* full-page background */
-  --bg-surface: #ffffff;     /* cards, input fields */
-
-  --border-color: #d0dae6;
-  --shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
-
-  --nav-height: 65px;
+  --bg-body: #c4e0fc;       /* Page background */
+  --bg-surface: #FFFFFF;    /* Card, inputs, UI elements */
+  --border-color: #dee2e6;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --nav-height: 60px;
 }
 
 /* -----------------------------------------------------
-   Global Styles
+Global Styles
 ----------------------------------------------------- */
 *, *::before, *::after {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  background: var(--bg-body);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg-body);    /* ONLY page background */
   color: var(--text-dark);
-  padding-top: calc(var(--nav-height) + 12px);
-  line-height: 1.6;
+  padding-top: var(--nav-height);
+  line-height: 1.5;
 }
 
-/* Smooth fade-in effect globally */
-.fade-in {
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeIn 0.6s ease-out forwards;
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.75rem;
+  font-weight: 600;
 }
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+
+p { margin-bottom: 1rem; }
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: 0.2s ease;
 }
+
+a:hover { color: var(--primary-dark); }
+
+ul { list-style-type: none; }
 
 /* -----------------------------------------------------
-   Main Container
+Main Container
 ----------------------------------------------------- */
 .container {
-  max-width: 1050px;
-  margin: 30px auto;
-  padding: 24px;
-  animation: fadeIn 0.7s ease-out;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 20px;
 }
 
 /* -----------------------------------------------------
-   Navbar (slightly lowered + floating)
+Navbar
 ----------------------------------------------------- */
 .navbar {
   position: fixed;
-  top: 10px; /* lowered for floating look */
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: calc(100% - 40px);
-  max-width: 1200px;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 
-  background: var(--bg-surface);
-  padding: 14px 24px;
-  border-radius: 12px;
+  padding: 0 20px;
+  min-height: var(--nav-height);
 
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border-color);
-  z-index: 1000;
+  background: var(--bg-surface); /* White navbar */
+  color: var(--text-dark);
+
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
 .logo {
-  font-size: 1.6rem;
   font-weight: 700;
+  font-size: 1.5rem;
   color: var(--primary);
 }
 
 .nav-links {
   display: flex;
-  gap: 22px;
+  gap: 16px;
 }
 
 .nav-links a {
-  color: var(--text-muted);
   padding: 8px 4px;
-  border-bottom: 2px solid transparent;
   font-weight: 500;
-  transition: 0.2s ease;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
 }
 
 .nav-links a.active {
@@ -110,65 +106,102 @@ body {
   border-bottom-color: var(--primary);
 }
 
+.logout-btn {
+  background: var(--danger);
+}
+
 /* -----------------------------------------------------
-   Buttons
+Buttons
 ----------------------------------------------------- */
 button {
-  padding: 12px 18px;
+  padding: 10px 16px;
+  border-radius: 6px;
   background: var(--primary);
   color: var(--text-light);
-  border-radius: 6px;
   border: none;
   cursor: pointer;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   transition: 0.2s ease;
-  box-shadow: 0 3px 8px rgba(0, 122, 255, 0.25);
 }
 
-button:hover {
-  background: var(--primary-dark);
-}
-
-.logout-btn {
-  background: var(--danger) !important;
+button:hover { background: var(--primary-dark); }
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* -----------------------------------------------------
-   Cards (Floating Forms, Dashboard Boxes)
+Cards & Lists
 ----------------------------------------------------- */
 .card {
-  background: var(--bg-surface);
-  padding: 28px;
-  margin: 30px 0;
-  border-radius: 14px;
+  background: var(--bg-surface); /* WHITE */
+  padding: 24px;
+  border-radius: 8px;
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow);
-  animation: fadeIn 0.7s ease-out;
+  margin-bottom: 20px;
+}
+
+.list {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.member-item,
+.list li {
+  background: var(--bg-surface); /* WHITE rows */
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.member-item:last-child,
+.list li:last-child {
+  border-bottom: none;
+}
+
+.muted {
+  color: var(--text-muted);
 }
 
 /* -----------------------------------------------------
-   Forms
+Forms
 ----------------------------------------------------- */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
+}
+
+.form-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .form label {
-  font-weight: 600;
-  margin-bottom: 6px;
+  font-weight: 500;
+  margin-bottom: 4px;
 }
 
+/* INPUTS — UPDATED AS REQUESTED (WHITE BACKGROUND) */
 input,
 select,
 textarea {
   width: 100%;
-  padding: 12px 14px;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 6px;
   border: 1px solid var(--border-color);
-  background: var(--bg-surface);   /* WHITE inputs */
-  font-size: 15px;
+
+  background: var(--bg-surface);   /* WHITE INPUT FIELDS */
+  color: var(--text-dark);
+
+  font-size: 14px;
   transition: 0.2s ease;
 }
 
@@ -177,88 +210,68 @@ select:focus,
 textarea:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 4px var(--secondary);
+  box-shadow: 0 0 0 3px var(--secondary);
 }
 
 /* -----------------------------------------------------
-   Lists & Member Items
+Auth Pages
 ----------------------------------------------------- */
-.member-item,
-.list li {
-  background: var(--bg-surface);
-  padding: 18px;
-  border-bottom: 1px solid var(--border-color);
+.auth-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - var(--nav-height));
+  padding: 20px;
 }
 
-.member-item:last-child,
-.list li:last-child {
-  border-bottom: none;
+.auth-page-wrapper .card {
+  max-width: 400px;
 }
 
-.list {
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-}
+.error { color: var(--danger); font-weight: 500; }
+.success { color: var(--success); font-weight: 500; }
 
 /* -----------------------------------------------------
-   Dashboard Summary Cards
+Dashboard
 ----------------------------------------------------- */
 .summary-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-bottom: 24px;
 }
 
 .summary-grid .card {
-  margin: 0;
   text-align: center;
-  padding: 24px;
+  margin-bottom: 0;
 }
 
 .summary-grid .card h3 {
   color: var(--text-muted);
-  margin-bottom: 10px;
 }
 
 .summary-grid .card p {
-  font-size: 2.4rem;
-  font-weight: 700;
+  font-size: 2rem;
   color: var(--primary);
 }
 
 /* -----------------------------------------------------
-   Auth Pages
+Responsive (Mobile)
 ----------------------------------------------------- */
-.auth-page-wrapper {
-  min-height: calc(100vh - 80px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+@media (max-width: 600px) {
+  .container { padding: 16px 12px; }
 
-.auth-page-wrapper .card {
-  max-width: 430px;
-}
-
-/* -----------------------------------------------------
-   Responsive Design
------------------------------------------------------ */
-@media (max-width: 650px) {
   .navbar {
-    flex-direction: column;
     gap: 12px;
-    padding: 18px;
-  }
-
-  .nav-links {
-    gap: 12px;
-    flex-wrap: wrap;
     justify-content: center;
   }
 
-  .container {
-    padding: 16px;
-    margin-top: 40px;
-  }
+  .logo { width: 100%; text-align: center; }
+
+  .nav-links { justify-content: center; }
+
+  .logout-btn { width: 100%; }
+
+  .form-inline { flex-direction: column; }
+  .form-inline button { width: 100%; }
 }
